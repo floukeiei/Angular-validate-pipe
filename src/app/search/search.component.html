@@ -1,0 +1,59 @@
+
+<p-panel header="SearchPanel">
+    <div class="p-grid">
+        <div class="p-col-2">
+            <label>Department</label>
+        </div>
+        <div class="p-col-10">
+            <p-dropdown 
+            [options]="department" 
+            optionLabel="departmentName" 
+            placeholder="Select Department"
+            [showClear]='true'
+            [(ngModel)]='selectDepartment'
+        
+            >
+            </p-dropdown>
+            <ng-container *ngIf="!!selectDepartment">
+                {{ selectDepartment| json }}
+            </ng-container>
+            
+        </div>
+
+        <div class="p-col-2">
+            <label>Gender</label>
+        </div>
+
+        <div class="p-col-10" >
+            <p-radioButton name="groupname" value="M" label='Male' [(ngModel)]="selectGender"></p-radioButton>
+            <p-radioButton name="groupname" value="F" label='Female' [(ngModel)]="selectGender"></p-radioButton>
+            {{selectGender}}
+        </div>
+
+        <div class="p-col-2">
+            <label>firstName</label>
+        </div>
+        <div class="p-col-10">
+            <input type="text" pInputText [(ngModel)]="firstName" />
+        </div>
+        <div class="p-col-2">
+            <label>lastName</label>
+        </div>
+        <div class="p-col-10">
+            <input type="text" pInputText [(ngModel)]="lastName" />
+        </div>
+    </div>
+
+
+<br>
+<button label="search" pButton  (click)="searchEmployee()" ></button>
+    <button label="add" pButton  (click)="add()" ></button>
+    <button label="addToService" pButton (click)="addtoService()"></button>
+
+    <button label="gotoAdd" pButton (click)="gotoAdd()"></button>
+</p-panel>
+
+<!-- {{employeeList | json}} -->
+
+<app-result-list [empList]="employeeList"></app-result-list>
+

@@ -1,0 +1,79 @@
+
+<p-panel header="SavePanel">
+    <form [formGroup]="myForm" (ngSubmit)="saveForm()" >
+      <div class="p-grid">
+        <div class="p-col-3"><label for="department">Department</label></div>
+        <div class="p-col-9">
+          <p-dropdown
+            id="department"
+            optionLabel="departmentName"
+            placeholder="Select a Department"
+            dataKey="departmentCode"
+            [showClear]="true"
+            [options]="departmentList"
+            formControlName="department"
+          ></p-dropdown>
+
+          {{myForm.get('department').errors | json}}
+          <div style="color: rgb(157, 26, 26);font-weight: bold;"
+           *ngIf="myForm.get('department').hasError('required')"> 
+           department is require 
+          </div>
+        </div>
+        <div class="p-col-3">
+            <label>Gender</label>
+        </div>
+
+        <div class="p-col-9" >
+            <p-radioButton name="groupname"  formControlName="gender" value="M" label='Male' ></p-radioButton>
+            <p-radioButton name="groupname" formControlName="gender" value="F" label='Female'></p-radioButton>
+        </div>
+  
+        <div class="p-col-3"><label>firstName</label></div>
+        <div class="p-col-9">
+          <input id="firstName" type="text" pInputText formControlName="firstName"  />
+          <div style="color: rgb(157, 26, 26);font-weight: bold;"
+           *ngIf="myForm.get('firstName').hasError('required')"> 
+           firstName is require 
+          </div>
+
+          <div style="color: rgb(157, 26, 26);font-weight: bold;"
+           *ngIf="myForm.get('firstName').hasError('haveNum')"> 
+           firstName have Number
+          </div>
+
+          {{myForm.get('firstName').errors | json}}
+
+        </div>
+        <div class="p-col-3"><label>lastName</label></div>
+        <div class="p-col-9">
+          <input id="lastName" type="text" pInputText  formControlName="lastName" />
+          <div style="color: rgb(157, 26, 26);font-weight: bold;"
+           *ngIf="myForm.get('lastName').hasError('required')"> 
+           lastName is require 
+          </div>
+        </div>
+      </div>
+      <div class="p-grid p-justify-center">
+        <div class="p-col-2">
+          <p-button type="submit" label="Save"></p-button>
+          <p-button
+            type="button"
+            label="Back"
+            [routerLink]="['/search']"
+          ></p-button>
+        </div>
+      </div>
+    </form>
+  
+  
+    <br>
+  
+  </p-panel>
+  
+  {{ myForm.getRawValue() | json}}
+
+<p-button label="setvalue"  (onClick)="setValue()"></p-button>
+
+<p-button label="patchvalue"  (onClick)="patchValue()"></p-button>
+<!-- <button label="setvalue2" [disabled]="true" (click)="setValue()" pButton  ></button> -->

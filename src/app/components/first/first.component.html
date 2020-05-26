@@ -1,0 +1,23 @@
+<p>first works!</p>
+<h1>{{name}}</h1>
+{{name2}}
+<input type="text" [disabled]='false' [value]='str' 
+(input)="onInput($event)" />
+
+<input type="text" [disabled]='false' value='{{str}}'/>
+
+<input type="text" [disabled]='false' value='{{name2}}'/>
+<br>
+<br>
+
+MaxInput: {{maxInput}}
+<br>
+<br>
+Number <input type="text"  [value]='num' />
+<button (click)="increase()">+</button>
+<button (click)="decrease()">-</button>
+<br>
+<br>
+<button pButton  (click)="send()" label="SEND" [disabled]="true"> </button>
+
+<p-button label="Click" ></p-button>

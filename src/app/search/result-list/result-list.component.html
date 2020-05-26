@@ -1,0 +1,46 @@
+<p>result-list works!</p>
+
+empList : {{empList | json}}
+
+<ul>
+    <li *ngFor="let item of empList">
+        departmentCode:{{ item.department.departmentCode}} departmentName:{{ item.department.departmentName}} gender:{{ item.gender}} lastName:{{ item.lastName}}  firstName:{{ item.firstName}}
+    </li>
+</ul>
+
+FromService
+<ul>
+    <li *ngFor="let item of empService.employeeList">
+        departmentCode:{{ item.department.departmentCode}} departmentName:{{ item.department.departmentName}} gender:{{ item.gender}} lastName:{{ item.lastName}}  firstName:{{ item.firstName}}
+    </li>
+</ul>
+
+
+<p-table [value]="empService.employeeFromServiceList">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>แผนก</th>
+            <th>เพศ</th>
+            <th>ชื่อ</th>
+            <th>นามสกุล</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-emp let-index="rowIndex">
+        <tr>
+            <td>{{emp.department.departmentCode}} {{emp.department.departmentName}}</td>
+            <td>{{emp.gender | gender : 'ชาย' : 'หญิง'}}</td>
+            <td>{{emp.firstName}}</td>
+            <td>{{emp.lastName}}</td>
+            <td>
+                <p-button icon="pi pi-pencil" (onClick)="gotoEdit(emp)"></p-button>
+            </td>
+            <td>
+                {{index}}
+                <p-button icon="pi pi-trash" (onClick)="deleteById(emp,index)"></p-button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
